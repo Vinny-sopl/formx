@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Profile and Data</title>
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col items-center p-4">
+    
+   
+    <div class="max-w-4xl w-full mx-auto space-y-12 mt-8 md:mt-12">
+
+      
+        <a href="https://www.facebook.com/melvin.rivera.374801"
+           class="block w-36 h-36 rounded-full overflow-hidden shadow-2xl ring-4 ring-indigo-500 hover:ring-purple-600 transition duration-300 mx-auto transform hover:scale-105"
+           title="Visit Facebook Profile">
+            <img src="https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-1/534830848_1116836580355006_2209418903359974175_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeH2OyYbmRhwxpsdmZVMD87CEDtZ-S-ajjkQO1n5L5qOOUvxxCwMqAHWZYOSxPItdOnQMDbzUFQTeLTC7p3-Yt3R&_nc_ohc=cUgCM8GiC0kQ7kNvwFS7bg4&_nc_oc=AdnEIuv7ScwxZXK2SmlgxUG3AcryyDzHP5sbQW46EvSmfDk-gEskrE8jauoieCPnXm4&_nc_zt=24&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=zbK_YqKOVc3MMgn_SYITTA&oh=00_Afci2WmGxZ2lkmBZwuz41TpRezfqAEgCDC3egAUEtZkMrg&oe=690263DF" 
+                 alt="Profile Picture" 
+                 class="w-full h-full object-cover">
+        </a>
+
+     
+        <div class="bg-white p-6 rounded-xl shadow-2xl overflow-x-auto">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Student Data Table</h2>
+            <table class="min-w-full border-collapse">
+                <thead>
+                    <tr class="bg-indigo-500 text-white text-left text-sm uppercase tracking-wider">
+                        <th class="p-4 rounded-tl-xl" rowspan="2">NAME</th>
+                        <th class="p-4">SECTION</th>
+                        <th class="p-4 rounded-tr-xl">AGE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr class="table-row">
+                       
+                        <td class="p-4 border-b text-gray-700"></td> 
+                        <td class="p-4 border-b text-gray-700">204</td>
+                        <td class="p-4 border-b text-gray-700">19</td>
+                    </tr>
+                    
+                    <tr class="table-row">
+                        <td class="p-4 border-b text-gray-700">vinny</td>
+                        <td class="p-4 border-b text-gray-700">106</td>
+                        <td class="p-4 border-b text-gray-700">18</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+       
+        <form target="_blank" class="bg-white p-8 rounded-xl shadow-2xl space-y-5 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 border-b pb-3 mb-4">Contact Form</h2>
+
+            
+            <div>
+                <input type="text" placeholder="Your Name" class="input-field">
+            </div>
+
+           
+            <div>
+                <input type="email" placeholder="Email Address" required class="input-field">
+            </div>
+
+            
+            <div>
+                <input type="password" placeholder="Password" required class="input-field">
+            </div>
+
+            
+            <div>
+                <input type="number" step="2" max="100" placeholder="Number (Max 100, Step 2)" class="input-field">
+            </div>
+
+            
+            <div>
+                <input type="date" min="2025-01-01" max="2025-12-31" class="input-field" >
+            </div>
+
+          
+            <div>
+                <input type="datetime-local" class="input-field">
+            </div>
+
+           
+            <input type="submit" value="Submit Form"
+                   class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+        </form>
+
+    </div>
+</body>
+</html>
