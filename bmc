@@ -1,0 +1,228 @@
+import 'dart:io';
+
+void main() {
+  List<Map<String, dynamic>> students = [];
+  int choice;
+
+  do {
+    print("================================");
+    print("STUDENT MAIN MENU");
+    print("================================");
+    print("0. Search Student");
+    print("1. Add Student");
+    print("2. View Student");
+    print("3. Update Student");
+    print("4. Delete Student");
+    print("5. Compute Class Average");
+    print("6. Highest Grade");
+    print("7. Lowest Grade");
+    print("8. Exit");
+    print("================================");
+
+    stdout.write("Select number 0-8: ");
+    choice = int.tryParse(stdin.readLineSync() ?? '') ?? -1;
+
+    switch (choice) {
+      case 0:
+        searchStudent(students);
+        break;
+      case 1:
+        addStudent(students);
+        break;
+      case 2:
+        viewStudents(students);
+        break;
+      case 3:
+        updateStudent(students);
+        break;
+      case 4:
+        deleteStudent(students);
+        break;
+      case 5:
+        computeClassAverage(students);
+        break;
+      case 6:
+        highestGrade(students);
+        break;
+      case 7:
+        lowestGrade(students);
+        break;
+      case 8:
+        print("EXIT");
+        break;
+      default:
+        print("Invalid choice! Please select between 0 and 8.");
+    }
+    print("\n");
+  } while (choice != 8);
+}
+
+// 1. ADD STUDENT
+void addStudent(List<Map<String, dynamic>> students) {
+  print("\n--- ADD STUDENT ---");
+  stdout.write("Enter name: ");
+  String name = stdin.readLineSync() ?? '';
+
+  stdout.write("Enter age: ");
+  int age = int.tryParse(stdin.readLineSync() ?? '') ?? 0;
+
+  stdout.write("Enter course: ");
+  String course = stdin.readLineSync() ?? '';
+
+  stdout.write("Enter GWA: ");
+  double gwa = double.tryParse(stdin.readLineSync() ?? '') ?? 0.0;
+
+  Map<String, dynamic> newStudent = {
+    "name": name,
+    "age": age,
+    "course": course,
+    "gwa": gwa,
+  };
+
+  students.add(newStudent);
+  print("Student added successfully!");
+}
+
+// 2. VIEW STUDENT
+void viewStudents(List<Map<String, dynamic>> students) {
+  print("\n--- STUDENT LIST ---");
+  if (students.isEmpty) {
+    print("No records found.");
+    return;
+  }
+
+  for (int i = 0; i < students.length; i++) {
+    print("ID/Index [$i]");
+    print("  Name   : ${students[i]['name']}");
+    print("  Age    : ${students[i]['age']}");
+    print("  Course : ${students[i]['course']}");
+    print("  GWA    : ${students[i]['gwa']}");
+    print("-------------------------");
+  }
+}
+
+// 0. SEARCH STUDENT
+void searchStudent(List<Map<String, dynamic>> students) {
+  print("\n--- SEARCH STUDENT ---");
+  if (students.isEmpty) {
+    print("No records available to search.");
+    return;
+  }
+
+  stdout.write("Enter student name to search: ");
+  String query = (stdin.readLineSync() ?? '').toLowerCase();
+
+  bool found = false;
+  for (var s in students) {
+    if (s['name'].toString().toLowerCase().contains(query)) {
+      print("  Name: ${s['name']} | Age: ${s['age']} | Course: ${s['course']} | GWA: ${s['gwa']}");
+      found = true;
+    }
+  }
+
+  if (!found) {
+    print("No student found matching '$query'.");
+  }
+}
+
+// 3. UPDATE STUDENT
+void updateStudent(List<Map<String, dynamic>> students) {
+  print("\n--- UPDATE STUDENT ---");
+  viewStudents(students);
+  if (students.isEmpty) return;
+
+  stdout.write("Enter index number to update: ");
+  int index = int.tryParse(stdin.readLineSync() ?? '') ?? -1;
+
+  if (index >= 0 && index < students.length) {
+    stdout.write("Enter new name: ");
+    String name = stdin.readLineSync() ?? '';
+    if (name.isNotEmpty) students[index]['name'] = name;
+
+    stdout.write("Enter new age: ");
+    String ageInput = stdin.readLineSync() ?? '';
+    if (ageInput.isNotEmpty) students[index]['age'] = int.parse(ageInput);
+
+    stdout.write("Enter new course: ");
+    String course = stdin.readLineSync() ?? '';
+    if (course.isNotEmpty) students[index]['course'] = course;
+
+    stdout.write("Enter new GWA: ");
+    String gwaInput = stdin.readLineSync() ?? '';
+    if (gwaInput.isNotEmpty) students[index]['gwa'] = double.parse(gwaInput);
+
+    print("Student updated successfully!");
+  } else {
+    print("Invalid index.");
+  }
+}
+
+// 4. DELETE STUDENT
+void deleteStudent(List<Map<String, dynamic>> students) {
+  print("\n--- DELETE STUDENT ---");
+  viewStudents(students);
+  if (students.isEmpty) return;
+
+  stdout.write("Enter index number to delete: ");
+  int index = int.tryParse(stdin.readLineSync() ?? '') ?? -1;
+
+  if (index >= 0 && index < students.length) {
+    students.removeAt(index);
+    print("Student deleted successfully!");
+  } else {
+    print("Invalid index.");
+  }
+}
+
+// 5. COMPUTE CLASS AVERAGE
+void computeClassAverage(List<Map<String, dynamic>> students) {
+  print("\n--- COMPUTE CLASS AVERAGE ---");
+  if (students.isEmpty) {
+    print("No students recorded yet.");
+    return;
+  }
+
+  double totalGwa = 0;
+  for (var student in students) {
+    totalGwa += student['gwa'];
+  }
+
+  double average = totalGwa / students.length;
+  print("Class Average GWA: $average");
+}
+
+// 6. HIGHEST GRADE
+void highestGrade(List<Map<String, dynamic>> students) {
+  print("\n--- HIGHEST GRADE ---");
+  if (students.isEmpty) {
+    print("No students recorded yet.");
+    return;
+  }
+
+  var highest = students[0];
+  for (var student in students) {
+    if (student['gwa'] < highest['gwa']) {
+      highest = student;
+    }
+  }
+
+  print("Name: ${highest['name']} | GWA: ${highest['gwa']}");
+}
+
+// 7. LOWEST GRADE
+void lowestGrade(List<Map<String, dynamic>> students) {
+  print("\n--- LOWEST GRADE ---");
+  if (students.isEmpty) {
+    print("No students recorded yet.");
+    return;
+  }
+
+  var lowest = students[0];
+  for (var student in students) {
+    if (student['gwa'] > lowest['gwa']) {
+      lowest = student;
+    }
+  }
+
+  print("Name: ${lowest['name']} | GWA: ${lowest['gwa']}");
+}
